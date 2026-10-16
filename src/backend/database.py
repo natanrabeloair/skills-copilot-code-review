@@ -12,6 +12,7 @@ db = client['mergington_high']
 activities_collection = db['activities']
 teachers_collection = db['teachers']
 announcements_collection = db['announcements']
+database_settings_collection = db['settings']
 
 # Methods
 
@@ -46,14 +47,17 @@ def init_database():
         for name, details in initial_activities.items():
             activities_collection.insert_one({"_id": name, **details})
 
-    # Initialize example announcement if empty
-    if announcements_collection.count_documents({}) == 0:
-        expiration = (date.today() + timedelta(days=30)).isoformat()
-        announcements_collection.insert_one({
-            "message": "📢 Activity registration is open until the end of the month. Don't lose your spot!",
-            "start_date": None,
-            "expiration_date": expiration,
-        })
+    # Initialize example announcement only during initial setup
+    announcement_seed_marker = {"_id": "announcement_seeded"}
+    if not database_settings_collection.find_one(announcement_seed_marker):
+        if announcements_collection.count_documents({}) == 0:
+            expiration = (date.today() + timedelta(days=30)).isoformat()
+            announcements_collection.insert_one({
+                "message": "📢 Activity registration is open until the end of the month. Don't lose your spot!",
+                "start_date": None,
+                "expiration_date": expiration,
+            })
+        database_settings_collection.insert_one(announcement_seed_marker)
 
     # Initialize teacher accounts if empty
     if teachers_collection.count_documents({}) == 0:
