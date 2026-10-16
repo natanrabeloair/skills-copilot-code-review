@@ -12,14 +12,16 @@
     />
   </head>
   <body>
-<div class="announcement-banner">
-  📢 Activity registration is open until the end of the month. Don't lose your spot!
-</div>
+<div id="announcement-banners"></div>
     <header>
       <h1>Mergington High School</h1>
       <h2>Extracurricular Activities</h2>
       <div id="user-controls">
         <div id="user-status">
+          <button id="manage-announcements-button" class="icon-button hidden">
+            <span class="user-icon">📢</span>
+            <span>Announcements</span>
+          </button>
           <button id="login-button" class="icon-button">
             <span class="user-icon">👤</span>
             <span>Login</span>
@@ -137,6 +139,39 @@
       </div>
     </div>
 
+    <!-- Announcements Modal -->
+    <div id="announcements-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="ann-title">
+      <div class="modal-content ann-dialog">
+        <span class="close-modal" id="close-announcements" role="button" aria-label="Close">&times;</span>
+        <h3 id="ann-title">📢 Manage Announcements</h3>
+        <form id="announcement-form" class="ann-form">
+          <input type="hidden" id="ann-id" />
+          <div class="form-group">
+            <label for="ann-message">Message</label>
+            <textarea id="ann-message" rows="2" maxlength="300" required placeholder="What should students know?"></textarea>
+          </div>
+          <div class="ann-dates">
+            <div class="form-group">
+              <label for="ann-start">Start date <small>(optional)</small></label>
+              <input type="date" id="ann-start" />
+            </div>
+            <div class="form-group">
+              <label for="ann-expiration">Expiration date <small>(required)</small></label>
+              <input type="date" id="ann-expiration" required />
+            </div>
+          </div>
+          <div class="ann-form-actions">
+            <button type="submit" id="ann-save">Add announcement</button>
+            <button type="button" id="ann-cancel" class="ann-secondary hidden">Cancel edit</button>
+          </div>
+        </form>
+        <div id="ann-feedback" class="hidden message"></div>
+        <h4 class="ann-list-title">Existing announcements</h4>
+        <ul id="ann-list" class="ann-list"></ul>
+      </div>
+    </div>
+
     <script src="app.js"></script>
+    <script src="announcements.js"></script>
   </body>
 </html>
