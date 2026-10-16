@@ -153,6 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     updateAuthBodyClass();
+    if (window.onAuthChange) window.onAuthChange(currentUser);
     // Refresh the activities to update the UI
     fetchActivities();
   }

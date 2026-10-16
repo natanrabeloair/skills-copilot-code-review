@@ -665,10 +665,148 @@ footer {
   background-color: rgba(255, 255, 255, 0.3);
 }
 .announcement-banner {
-  background-color: #256029; /* Much darker green for WCAG AA contrast */
+  background-color: #256029;
   color: #ffffff;
   text-align: center;
-  padding: 15px;
+  padding: 12px 15px;
   font-weight: bold;
-  font-size: 1.1rem; /* Slightly larger text for improved readability */
+  font-size: 1.05rem;
+}
+
+.announcement-banner + .announcement-banner {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.ann-dialog {
+  max-width: 640px;
+  width: 92%;
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+.ann-form textarea,
+.ann-form input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font: inherit;
+  box-sizing: border-box;
+}
+
+.ann-form textarea {
+  resize: vertical;
+}
+
+.ann-dates {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.ann-dates .form-group {
+  flex: 1 1 200px;
+}
+
+.ann-form small {
+  color: #666;
+  font-weight: normal;
+}
+
+.ann-form-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.ann-secondary {
+  background: #e0e0e0;
+  color: #333;
+}
+
+.ann-list-title {
+  margin: 20px 0 8px;
+  border-top: 1px solid #eee;
+  padding-top: 14px;
+}
+
+.ann-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ann-item {
+  border: 1px solid #e0e0e0;
+  border-left: 5px solid #256029;
+  border-radius: 6px;
+  padding: 10px 12px;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: flex-start;
+  background: #fafafa;
+}
+
+.ann-item.expired {
+  border-left-color: #999;
+  opacity: 0.7;
+}
+
+.ann-item.scheduled {
+  border-left-color: #e0a100;
+}
+
+.ann-item-message {
+  margin: 0 0 6px;
+  word-break: break-word;
+}
+
+.ann-item-meta {
+  font-size: 0.8rem;
+  color: #555;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.ann-badge {
+  padding: 1px 8px;
+  border-radius: 10px;
+  font-size: 0.72rem;
+  font-weight: bold;
+  color: #fff;
+  background: #256029;
+}
+
+.ann-item.expired .ann-badge {
+  background: #777;
+}
+
+.ann-item.scheduled .ann-badge {
+  background: #b07a00;
+}
+
+.ann-item-actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.ann-item-actions button {
+  padding: 4px 10px;
+  font-size: 0.8rem;
+}
+
+.ann-item-actions .ann-delete {
+  background: #c62828;
+}
+
+.ann-empty {
+  text-align: center;
+  color: #777;
+  padding: 16px;
 }
